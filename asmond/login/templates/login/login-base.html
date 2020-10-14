@@ -1,0 +1,11 @@
+{% extends 'framework/login-base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+{% endblock %}
+
+{% block page-content %}
+    {% block login-content %}
+    {% endblock %}
+{% endblock %}

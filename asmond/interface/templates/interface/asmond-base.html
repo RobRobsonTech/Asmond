@@ -1,0 +1,13 @@
+{% extends 'framework/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'interface/css/asmond.css' %}">
+{% endblock %}
+
+{% block interface-active %}active{% endblock %}
+
+{% block page-content %}
+    {% block interface-content %}
+    {% endblock %}
+{% endblock %}

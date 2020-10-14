@@ -1,0 +1,119 @@
+{% extends 'interface/asmond-base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+{{ block.super }}
+
+{% endblock %}
+
+{% block title %}Asmond Dashboard{% endblock %}
+
+{% block networkmap-active %}active{% endblock %}
+
+{% block interface-content %}
+
+<div>
+    <div class="panel panel-default visible-xs" style="height:100%; margin-top:10px; text-align:center;">
+        <div class="panel-body">
+            <label>Web Interface: {{ ip_address }}:8000</label>
+        </div>
+    </div>
+
+    <!-- No Device Levels Found -->
+    {% if devices_found != None %}
+        {% for device in devices_found %}
+            {% if device.device_level == 1 %}
+            {% elif device.device_level == 2 %}
+            {% elif device.device_level == 3 %}
+            {% else %}
+                <div class="panel panel-default" style="height:100%; margin-top:10px; text-align:center;">
+                    <div class="panel-body">
+                        <label>No Devices Levels Found</label>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+    <!-- Level 1 - Router Tier -->
+    <div>
+        <div class="panel panel-primary" style="height:100%; margin-top:10px; margin-bottom:0px;">
+            <div class="panel-heading" style="text-align:center;">
+                <label>Level 1 Device</label>
+            </div>
+        </div>
+        <div class="panel panel-default" style="height:100%;">
+            {% if devices_found != None %}
+                {% for device in devices_found %}
+                    {% if device.device_level == 1 %}
+                        <div class="panel-heading">
+                            <label>{{ device.device_type }} Name:</label> "{{ device.hostname }}"
+                        </div>
+                        <div class="panel-body">
+                            <label>IP Address:</label> {{ device.ip_address }}
+                            <br>
+                            <label>MAC Vendor:</label> {{ device.mac_vendor }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Level 2 - Devices Connected To Router -->
+    <div>
+        <div class="panel panel-primary" style="height:100%; margin-top:10px; margin-bottom:0px;">
+            <div class="panel-heading panel-primary" style="text-align:center;">
+                <label>Level 2 Devices</label>
+            </div>
+        </div>
+        <div class="panel panel-default" style="height:100%;">
+            {% if devices_found != None %}
+                {% for device in devices_found %}
+                    {% if device.device_level == 2 %}
+                        <div class="panel-heading">
+                            <label>{{ device.device_type }} Name:</label> "{{ device.hostname }}"
+                        </div>
+                        <div class="panel-body">
+                            <label>IP Address:</label> {{ device.ip_address }}
+                            <br>
+                            <label>MAC Vendor:</label> {{ device.mac_vendor }}
+                            <br>
+                            <label>Connects To:</label> "{{ device.connects_to }}"
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Level 3 - Devices Connected To Devices -->
+    <div>
+        <div class="panel panel-primary" style="height:100%; margin-top:10px; margin-bottom:0px;">
+            <div class="panel-heading panel-primary" style="text-align:center;">
+                <label>Level 3 Devices</label>
+            </div>
+        </div>
+        <div class="panel panel-default" style="height:100%;">
+            {% if devices_found != None %}
+                {% for device in devices_found %}
+                    {% if device.device_level == 3 %}
+                        <div class="panel-heading">
+                            <label>{{ device.device_type }} Name:</label> "{{ device.hostname }}"
+                        </div>
+                        <div class="panel-body">
+                            <label>IP Address:</label> {{ device.ip_address }}
+                            <br>
+                            <label>MAC Vendor:</label> {{ device.mac_vendor }}
+                            <br>
+                            <label>Connects To:</label> "{{ device.connects_to }}"
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

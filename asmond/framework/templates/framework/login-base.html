@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'framework/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'framework/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'framework/css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'framework/css/jquery.datetimepicker.css' %}">
+
+        <script src="{% static 'framework/js/jquery-3.1.0.min.js' %}"></script>
+        <script src="{% static 'framework/js/jquery.datetimepicker.js' %}"></script>
+        <script src="{% static 'framework/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'framework/js/bootbox.min.js' %}"></script>
+        <script src="{% static 'framework/js/csrf.js' %}"></script>
+
+        {% block head %}
+        {% endblock %}
+
+        <title>{% block title %}{% endblock %} - Network Defender</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse" style="background-color: #2f2f2f;">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header" style="float:none;">
+                    <div style="text-align:center;">
+                        <img src="{% static 'framework/img/asmond-web-logo-inverted-v3.png'%}">
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div class="container">
+            {% block page-content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

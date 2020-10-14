@@ -1,0 +1,247 @@
+{% extends 'interface/asmond-base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+{{ block.super }}
+
+{% endblock %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block homepage-active %}active{% endblock %}
+
+{% block interface-content %}
+
+<link rel="stylesheet" href="{% static 'interface/css/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'interface/css/jQuery-plugin-progressbar.css' %}">
+<script src="{% static 'interface/js/smartresize.js' %}"></script>
+<script src="{% static 'interface/js/jQuery-plugin-progressbar.js' %}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Problem', 'Amount'],
+      ['General Spam',      12],
+      ['Phishing',          10],
+      ['Pharming',          5],
+      ['Ads',               5],
+      ['Spoofed Emails',    2],
+      ['Explicit Spam',     2]
+    ]);
+
+    var options = {
+      width: '100%',
+      height: '100%',
+      pieSliceText: 'value',
+      legend: {
+        position: 'right',
+        maxLines: '5',
+        alignment: 'right'
+      },
+      chartArea: { width: "100%", height: "70%" }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+
+    $(window).smartresize(function () {
+        chart.draw(data, options);
+    });
+  }
+</script>
+
+
+<div>
+    <!-- IP Address -->
+    <div class="panel panel-default visible-xs" style="height:100%; margin-top:10px; text-align:center;">
+        <div class="panel-body" style="height:100%;">
+            <label>Web Interface: {{ ip_address }}:8000</label>
+        </div>
+    </div>
+
+    <!-- Homepage Test -->
+    <div style="width:100%;">
+        <!-- Top 2 Panels -->
+        <div>
+            <!-- Top Left Panel -->
+            <div class="left-panel">
+                {% if small_usb == True %}
+                <div class="panel panel-success" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Small Business Module</label>
+                    </div>
+                    <div class="panel-body">
+                        <label>Firewall:</label> Running<br>
+                        <label>Status:</label> OK
+                    </div>
+                </div>
+                {% else %}
+                <div class="panel panel-danger" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Small Business Module</label>
+                    </div>
+                    <div class="panel-body" style="text-align:center; padding-top:25px;">
+                        <label>Module Offline</label>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <!-- Top Right Panel -->
+            <div class="right-panel">
+                {% if midsize_usb == True %}
+                <div class="panel panel-danger" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Midsize Business Module</label>
+                    </div>
+                    <div class="panel-body">
+                        <label>Anti-Spam:</label> Running<br>
+                        <label>Status:</label> Problems Found!
+                    </div>
+                </div>
+                {% else %}
+                <div class="panel panel-warning" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Midsize Business Module</label>
+                    </div>
+                    <div class="panel-body" style="text-align:center; padding-top:25px;">
+                        <label>Module Offline</label>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <!-- Middle 2 Panels -->
+        <div>
+           <!-- Middle Left Panel -->
+            <div class="left-panel">
+                {% if large_usb == True %}
+                <div class="panel panel-success" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Large Business Module</label>
+                    </div>
+                    <div class="panel-body">
+                        <label>Deep Packet Inspection:</label> Running<br>
+                        <label>Status:</label> OK
+                    </div>
+                </div>
+                {% else %}
+                <div class="panel panel-warning" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Large Business Module</label>
+                    </div>
+                    <div class="panel-body" style="text-align:center; padding-top:25px;">
+                        <label>Module Offline</label>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <!-- Middle Right Panel -->
+            <div class="right-panel">
+                {% if enterprise_usb == True %}
+                <div class="panel panel-success" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Enterprise Module</label>
+                    </div>
+                    <div class="panel-body">
+                        <label>Honeypot:</label> Running<br>
+                        <label>Status:</label> OK
+                    </div>
+                </div>
+                {% else %}
+                <div class="panel panel-warning" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Enterprise Business Module</label>
+                    </div>
+                    <div class="panel-body" style="text-align:center; padding-top:25px;">
+                        <label>Module Offline</label>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Bottom 2 Panels -->
+        <div>
+            <!-- Bottom Left Panel -->
+            {% if small_usb == True %}
+            <div class="left-panel" style="height:300px;">
+                <div class="panel panel-default" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Security Score</label>
+                    </div>
+                    <div class="panel-body">
+
+                        <!-- Security Score 2 -->
+                        <div style="width:100%;">
+                            <div style="display: table; margin: 0 auto;">
+                                {% if midsize_usb == True %}
+                                <div class="progress-bar position" data-percent="80" data-duration="2000"></div>
+                                {% else %}
+                                <div class="progress-bar position" data-percent="100" data-duration="2000"></div>
+                                {% endif %}
+                                <script>
+                                    $(".progress-bar").loading();
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="bottom-panel">
+                <div class="panel panel-danger" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Security Score & Network Problems</label>
+                    </div>
+                    <div class="panel-body" style="text-align:center; padding-top:25px; height:100px;">
+                        <label>Error:</label> Small business module is not online!<br>
+                        Please connect small business module and try again...
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+
+            <!-- Bottom Right Panel -->
+            {% if midsize_usb == True %}
+            <div class="right-panel" style="height:300px;">
+                <div class="panel panel-default" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Network Problems</label>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <!-- Problems Graph -->
+                            <div id="piechart" style="height:100%; width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% elif small_usb == True %}
+            <div class="right-panel" style="height:300px;">
+                <div class="panel panel-success" style="height:100%; margin-top:10px;">
+                    <div class="panel-heading" style="text-align:center;">
+                        <label>Network Problems</label>
+                    </div>
+                    <div class="panel-body" style="text-align:center; padding-top:110px;">
+                        <label>No Problems Found!</label>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div>
+                <!-- Nothing -->
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

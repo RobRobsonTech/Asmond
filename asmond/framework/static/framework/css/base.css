@@ -1,0 +1,53 @@
+body {
+    margin-bottom: 24px;
+}
+
+.top-space {
+    margin-top: 24px;
+}
+
+.btn-space {
+    margin-left: 6px;
+}
+
+.vert-mid > td {
+    vertical-align: middle !important;
+}
+
+.btm-space {
+    margin-bottom: 24px;
+}
+
+.btn-square {
+  border-radius: 0 !important;
+}
+
+.btn-no-shadow:hover, .btn-no-shadow:active{
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+    opacity: 0.7;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.top-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    pointer-events:none;
+}
+
+.top-logo-image {
+    max-width:189px;
+    max-height:50px;
+    width:189px;
+    height:50px;
+}

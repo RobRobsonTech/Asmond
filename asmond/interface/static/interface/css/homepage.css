@@ -1,0 +1,62 @@
+.left-panel{
+    width:48%;
+    float:left;
+}
+.right-panel{
+    width:48%;
+    float:right;
+}
+.bottom-panel{
+    width:100%;
+    float:left;
+}
+
+/* Responsive Sizes */
+
+/* Phones */
+@media (max-width: 768px) {
+    .left-panel{
+        width:100%;
+        float:none;
+    }
+    .right-panel{
+        width:100%;
+        float:none;
+    }
+    .bottom-panel{
+        width:100%;
+        float:none;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+    .left-panel{
+        width:48%;
+        float:left;
+    }
+    .right-panel{
+        width:48%;
+        float:right;
+    }
+    .bottom-panel{
+        width:100%;
+        float:left;
+    }
+}
+
+/* Desktops */
+@media (min-width: 992px) {
+
+}
+
+/* Large Desktops */
+@media (min-width: 1200px) {
+
+}
+
+svg > g > g:last-child { pointer-events: none }
+
+.panel-body {
+    height:75px;
+}

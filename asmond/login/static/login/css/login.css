@@ -1,0 +1,101 @@
+#circle1
+{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    margin-top: 43%;
+    margin-left: -100px;
+    width: 200px;
+    height: 200px;
+    background: #666666;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+}
+
+#device1
+{
+    position: absolute;
+    top: 12%;
+    left: 15%;
+}
+
+#circle2
+{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    margin-top: 29%;
+    margin-left: -200px;
+    width: 400px;
+    height: 400px;
+    background: green;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    border-radius: 200px;
+    transform: rotate(0deg);
+	transition: transform 0.7s linear;
+}
+
+@keyframes circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+}
+
+@keyframes inner-circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(-360deg); }
+}
+
+.parent {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: rotate(0deg);
+	transition: transform 0.7s linear;
+}
+
+.device2
+{
+    position: absolute;
+    left: 15%;
+    margin-top: -10%;
+    margin-left: 45px;
+}
+
+#device_amount
+{
+    // Make shape to contain amount of devices
+}
+
+
+#circle3
+{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    margin-top: 15%;
+    margin-left: -300px;
+    width: 600px;
+    height: 600px;
+    background: #666666;
+    -moz-border-radius: 300px;
+    -webkit-border-radius: 300px;
+    border-radius: 300px;
+}
+
+
+#circle4
+{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    margin-top: 1%;
+    margin-left: -400px;
+    width: 800px;
+    height: 800px;
+    background: #2f2f2f;
+    -moz-border-radius: 600px;
+    -webkit-border-radius: 600px;
+    border-radius: 600px;
+}

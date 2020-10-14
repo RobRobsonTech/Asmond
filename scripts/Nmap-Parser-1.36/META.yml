@@ -1,0 +1,19 @@
+---
+abstract: 'Parse nmap scan data with perl'
+author:
+  - 'Anthony Persaud'
+build_requires: {}
+dynamic_config: 1
+generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.133380'
+license: mit
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Nmap-Parser
+no_index:
+  directory:
+    - t
+    - inc
+resources: {}
+version: 1.36
+x_homepage: https://github.com/modernistik/Nmap-Parser

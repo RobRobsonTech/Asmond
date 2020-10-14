@@ -1,0 +1,41 @@
+{% extends 'interface/asmond-base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+{{ block.super }}
+
+{% endblock %}
+
+{% block title %}Network Devices{% endblock %}
+
+{% block networkdevices-active %}active{% endblock %}
+
+{% block interface-content %}
+    <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+    {% if devices_found != None %}
+    {% for device in devices_found %}
+        <div class="panel panel-default" style="height:100%; margin-top:10px;">
+            <div class="panel-heading">
+                <label>{{ device.device_type }} Device Name:</label> "{{ device.hostname }}"
+            </div>
+            <div class="panel-body">
+                <label>IP Address:</label> {{ device.ip_address }}
+                <br>
+                <label>MAC Vendor:</label> {{ device.mac_vendor }}
+            </div>
+        </div>
+    {% endfor %}
+    {% else %}
+        <br>
+        <div style="text-align: center;">
+            <label>No Device Data Found</label>
+        </div>
+    {% endif %}
+    </div>
+    <div>
+        {% for mapped in nmap_device %}
+        TEMP DIV: {{ mapped.hostname }}
+        {% endfor %}
+    </div>
+{% endblock %}

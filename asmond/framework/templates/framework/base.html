@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'framework/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'framework/css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'framework/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'framework/css/jquery.datetimepicker.css' %}">
+
+    <link rel="icon" type="image/png" href="{% static 'framework/img/favicon/asmond-favicon.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'framework/img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'framework/img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'framework/img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'framework/img/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'framework/img/favicon/safari-pinned-tab.svg' color='#5bbad5' %}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="{% static 'framework/js/jquery-3.1.0.min.js' %}"></script>
+    <script src="{% static 'framework/js/jquery.datetimepicker.js' %}"></script>
+    <script src="{% static 'framework/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'framework/js/bootbox.min.js' %}"></script>
+    <script src="{% static 'framework/js/csrf.js' %}"></script>
+
+    {% block head %}
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %} - Asmond Demo</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="background-color: #2f2f2f;">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="padding-left:15px; padding-right:2%;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{% url 'interface:homepage' %}">
+                <img src="{% static 'framework/img/asmond-web-logo-inverted-v4.png'%}" style="padding-top:3px;">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="{% block networkmap-active %}{% endblock %}"><a href="{% url 'interface:networkmap' %}">Map</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="{% block networkdevices-active %}{% endblock %}"><a href="{% url 'interface:networkdevices' %}">Devices</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="{% block networkproblems-active %}{% endblock %}"><a href="{% url 'interface:networkproblems' %}">Problems</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav visible-xs hidden-sm">
+                <li class="{% block login-active %}{% endblock %}"><a href="{% url 'login:login' %}">Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right hidden-xs visible-sm visible-md visible-lg">
+                <li class="{% block logout %}{% endblock %}">
+                    <a href="{% url 'login:login' %}">
+                        <img src="{% static 'framework/img/logout.png'%}" onmouseover="this.src='{% static 'framework/img/logout2.png'%}';"
+                             onmouseout="this.src='{% static 'framework/img/logout.png'%}';" style=" margin-top:-25px; width:40px; height:40px; margin-bottom:-20px;">
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="{% block settings-active %}{% endblock %}"><a href="{% url 'settings:settings' %}">Settings</a></li>
+            </ul>
+
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    {% block page-content %}
+    {% endblock %}
+</div>
+</body>
+</html>

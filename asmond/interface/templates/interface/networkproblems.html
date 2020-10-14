@@ -1,0 +1,125 @@
+{% extends 'interface/asmond-base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+{{ block.super }}
+
+{% endblock %}
+
+{% block title %}Problems{% endblock %}
+
+{% block networkproblems-active %}active{% endblock %}
+
+{% block interface-content %}
+<link rel="stylesheet" href="{% static 'interface/css/asmond.css' %}">
+
+<script type="text/javascript">
+function removeProblem(divName)
+{
+    jQuery(divName).slideUp();
+}
+
+function resolveProblem(divName)
+{
+    <!--Overlay-->
+    document.getElementById("overlay").style.display = "block";
+    <!--Buffer-->
+    document.getElementById("loader").style.display = "block";
+
+    setTimeout(function ()
+    {
+        <!--Remove-->
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+        jQuery(divName).slideUp();
+    }, 2000);
+}
+
+function resolveAll(divName)
+{
+    <!--Overlay-->
+    document.getElementById("overlay").style.display = "block";
+    <!--Buffer-->
+    document.getElementById("loader").style.display = "block";
+
+    setTimeout(function ()
+    {
+        <!--Remove-->
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+        jQuery(divName).slideUp();
+        jQuery(resolvedAll).slideDown();
+    }, 8000);
+}
+
+</script>
+
+<div id="loader"></div>
+<div id="overlay"></div>
+
+<div id="resolvedAll" style="display:none;">
+    <div style="width:100%; float:left;">
+        <div class="panel panel-success" style="height:100%; margin-top:10px;">
+            <div class="panel-heading" style="text-align:center;">
+                <label>Network Problems</label>
+            </div>
+            <div class="panel-body" style="text-align:center; padding-top:40px; height:100px;">
+                <label>Success:</label> All Problems Resolved!
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="all_problems">
+        <br>
+    {% if device_problems != None %}
+    <button type="submit" value="1" name="view_more" class="btn btn-success"
+    style="display:block; margin-left:auto; margin-right:auto; width: 100%" onclick="resolveAll(all_problems)">
+    Fix All Problems
+    </button>
+
+    {% for problem in device_problems %}
+        {% if problem.problem_severity == 3 %}
+        <div class="panel panel-default" style="height:100%; margin-top:10px;" id="problem_panel{{ forloop.counter0 }}">
+        {% elif problem.problem_severity == 2 %}
+        <div class="panel panel-info" style="height:100%; margin-top:10px;" id="problem_panel{{ forloop.counter0 }}">
+        {% elif problem.problem_severity == 1 %}
+        <div class="panel panel-warning" style="height:100%; margin-top:10px;" id="problem_panel{{ forloop.counter0 }}">
+        {% elif problem.problem_severity == 0 %}
+        <div class="panel panel-danger" style="height:100%; margin-top:10px;" id="problem_panel{{ forloop.counter0 }}">
+        {% endif %}
+            <div class="panel-heading">
+                <label>{{ problem.device.device_type }} Device Name: {{ problem.device.hostname }} </label>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <label>Network Problem {{ forloop.counter }}:</label>
+                    {{ problem.device_problem }}
+                </div>
+                <div>
+                    <div style="width:90%; float:left;">
+                        <button type="submit" value="1" name="view_more" class="btn btn-default" id="fix_button{{ forloop.counter0 }}"
+                        style="display:block; margin-left:auto; margin-right:auto; width: 100%;" onclick="resolveProblem(problem_panel{{ forloop.counter0 }})">
+                        Fix Problem
+                        </button>
+                    </div>
+                    <div style="float:right;">
+                        <button type="submit" value="1" name="view_more" class="btn btn-danger" id="dismiss_button{{ forloop.counter0 }}"
+                        style="display:block; margin-left:auto; margin-right:auto; width:40px;" onclick="removeProblem(problem_panel{{ forloop.counter0 }})">
+                        X
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% else %}
+        <br>
+        <div style="text-align: center;">
+            <label>No Device Problems Found</label>
+        </div>
+    {% endif %}
+
+    </div>
+{% endblock %}
